@@ -1,0 +1,37 @@
+##
+#
+#
+#
+
+SRCDIR   = $(cwd)/src
+INCDIR   = $(cwd)/include
+LIBDIR   = $(cwd)/output/lib
+OBJDIR   = $(cwd)/output/obj
+BINDIR   = $(cwd)/output/bin
+
+###objects is better
+COMPONENTS := $(shell cat $(cwd)/components)
+
+CPP		= g++
+CC		= gcc
+#lib
+STLIB 	= ar -cr
+RANLIB  = ranlib
+SHLIB 	= 
+
+#bin
+DEBUGOPT_LINK   = -g -D_DEBUG
+RELEASEOPT_LINK	=
+STATICOPT_LINK  = -static
+
+#obj
+DEBUGOPT_CPP    = -g -D_DEBUG -Wall
+RELEASEOPT_CPP  = -DNDEBUG
+
+INCLUDE = -I$(cwd)/include $(foreach p,$(APP_ADD_INCLUDE),-I$(p))
+LIBRARY = $(foreach p,$(APP_ADD_LIBRARY),-L$(p))
+
+DEP_LIBS_DEBUG   = $(foreach l,$(dep_libs),-l$(l)d$(OSARCH_POSTFIX))
+DEP_LIBS_RELEASE = $(foreach l,$(dep_libs),-l$(l)$(OSARCH_POSTFIX))
+
+
