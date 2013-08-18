@@ -3,4 +3,4 @@
 .PHONY: clean
 
 clean:
-	rm -rf $(OBJDIR)/*.o
+	rm -rf $(OBJDIR)/*.o $(BINDIR)/* $(LIBDIR)/*
