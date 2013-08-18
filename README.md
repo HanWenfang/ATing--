@@ -9,7 +9,7 @@ Goals & features:
 * A build system, which could be dynamically extensible
 * A code generator, which could generate C++ style source code
 * A general unit test framework  
-* An IDE like dynamic language for C++
+* An IDE like dynamic languages for C++
 
 Installation
 =======
