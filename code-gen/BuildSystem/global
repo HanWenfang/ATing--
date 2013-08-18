@@ -14,7 +14,6 @@ COMPONENTS := $(shell cat $(cwd)/components)
 
 CPP		= g++
 CC		= gcc
-
 #lib
 STLIB 	= ar -cr
 RANLIB  = ranlib

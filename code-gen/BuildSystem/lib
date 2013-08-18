@@ -7,3 +7,4 @@ $(LIBDIR)/$(target).a:$(foreach object,$(COMPONENTS),$(OBJDIR)/$(object).o)
 $(LIBDIR)/$(target)d.a:$(foreach object,$(COMPONENTS),$(OBJDIR)/$(object)d.o)
 	$(STLIB) $@ $^
 	$(RANLIB) $@
+

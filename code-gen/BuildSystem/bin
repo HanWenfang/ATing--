@@ -4,4 +4,3 @@ $(BINDIR)/$(target): $(foreach object,$(COMPONENTS),$(OBJDIR)/$(object).o)
 
 $(BINDIR)/$(target)d: $(foreach object,$(COMPONENTS),$(OBJDIR)/$(object)d.o)
 	$(CPP) $(DEBUGOPT_LINK) $(STATICOPT_LINK) $^ -o $@ $(LIBRARY) $(DEP_LIBS_RELEASE) $(SYSLIBS)
-
