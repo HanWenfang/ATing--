@@ -2,7 +2,7 @@ ATing--
 =======
 
 ATing-- is a cool C++ development framework. ATing-- is an implementation for your ordinary C++ development with a shell and an editor.Now it has 
-three modules: a modularized Build System, a code generator and a unit test framework[will coming soon].
+three modules: a modularized Build System, a code generator and a unit test framework[coming soon].
 
 Goals & features:
 
