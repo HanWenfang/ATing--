@@ -23,7 +23,7 @@ Installation
 
 Basic Usage
 =======
-* Copy the BuildSystem/ fold to your work directory
+* Copy the BuildSystem/ folder to your work directory
 * Copy the build output "code-gen" to the same directory
 * $ ./code-gen App hello 
   
