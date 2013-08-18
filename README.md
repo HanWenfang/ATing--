@@ -30,7 +30,7 @@ Basic Usage
     will create /include/hello.h and src/hello.cpp with a namespace of App.
     
     will create a Makefile for your configuration and a components file.
-* You can add any module at anytime, by  ./code-gen App hello1  or more modules one tim by ./code-gen hello1 hello2 hello3 
+* You can add any module at anytime, by  ./code-gen App hello1  or more modules one tim by ./code-gen App hello1 hello2 hello3 
 * See the [wiki](https://github.com/HanWenfang/ATing--/wiki) for more information
 
 
