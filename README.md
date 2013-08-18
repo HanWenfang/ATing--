@@ -30,6 +30,6 @@ Basic Usage
     will create /include/hello.h and src/hello.cpp with a namespace of App.
     
     will create a Makefile for your configuration and a components file.
-* See the wiki for more information
+* See the [wiki](https://github.com/HanWenfang/ATing--/wiki) for more information
 
 
