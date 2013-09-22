@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <map>
 #include <locale>
 
 #include <sys/stat.h>
@@ -70,15 +71,26 @@ string dep_command(vector<string> &objects)
 }
 
 // obj part in makefile
-int obj_command_template(ofstream &file, string &object)
+int obj_command_template(ofstream &file, string &object, map<string, string> &remember)
 {
-	file << "$(OBJDIR)/" << object << ".o: $(SRCDIR)/" << object << 
-	".cpp $(INCDIR)/" << object << ".h" << endl;
-	file << "\t" << "$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@" << endl << endl;
+	if(remember.find(object) != remember.end())
+	{
+		file << "$(OBJDIR)/" << object << ".o:" << remember[object] << endl;
+		file << "\t" << "$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@" << endl << endl;
 
-	file << "$(OBJDIR)/" << object << "d" << ".o: $(SRCDIR)/" << object << 
-	".cpp $(INCDIR)/" << object << ".h" << endl;
-	file << "\t" << "$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@" << endl << endl;
+		file << "$(OBJDIR)/" << object << "d" << ".o:" << remember[object] << endl;
+		file << "\t" << "$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@" << endl << endl;
+	}
+	else
+	{
+		file << "$(OBJDIR)/" << object << ".o: $(SRCDIR)/" << object << 
+		".cpp $(INCDIR)/" << object << ".h" << endl;
+		file << "\t" << "$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@" << endl << endl;
+
+		file << "$(OBJDIR)/" << object << "d" << ".o: $(SRCDIR)/" << object << 
+		".cpp $(INCDIR)/" << object << ".h" << endl;
+		file << "\t" << "$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@" << endl << endl;
+	}
 
 	return 0;
 }
@@ -292,6 +304,37 @@ int main(int argc, char *argv[])
 		mkfile.close();
 
 		//obj
+		map<string, string> obj_dep;  //one map is for unique
+		string obj_line;
+		bool flag=true;
+
+		if(access(build_system_obj_path.c_str(), F_OK) == 0)
+		{
+			ifstream obj_file(build_system_obj_path.c_str());
+			string temp;
+			string key;
+			string dep_context;
+			string::iterator it;
+			while(getline(obj_file, temp))
+			{
+				it = temp.begin();
+				if(*it == '$' && !flag) { flag = !flag; }
+				if(*it == '$' && flag){
+					while( *it != '/' ) ++it;
+					++it;
+					while( *it != '.' ) { key.push_back(*it); ++it; }
+					while( *it != ':' ) ++it;
+					++it;
+					while( it != temp.end()){ dep_context.push_back(*it); ++it; }
+					obj_dep[key] = dep_context;
+					key.clear();
+					dep_context.clear();
+					flag = !flag;
+				}
+			}
+			obj_file.close();
+		}
+
 		ofstream objfile;
 		objfile.open(build_system_obj_path.c_str());
 		objfile <<  makefile_comment() << endl << endl;
@@ -299,7 +342,7 @@ int main(int argc, char *argv[])
 
 		for(vector<string>::iterator it= objects_buffer.begin(); it != objects_buffer.end(); ++it)
 		{
-			obj_command_template(objfile,*it);
+			obj_command_template(objfile,*it, obj_dep);
 		}
 		objfile.close();
 	}

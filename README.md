@@ -32,4 +32,7 @@ Basic Usage
     will create a Makefile for your configuration and a components file.
 * See the [wiki](https://github.com/HanWenfang/ATing--/wiki) for more information
 
+Attention
+======
+The framework don't add dependency relationship between files, so you must add dependency relationship to the obj file by yourself. The framework will remember it next time.
 
