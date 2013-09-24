@@ -35,5 +35,5 @@ Basic Usage
 
 Attention
 ======
-The framework don't add dependency relationship automatically among files, so you must add dependency relationship to the obj file by yourself. The framework will remember it next time.
+The framework won't add dependency relationship automatically among files, so you must add dependency relationship to the obj file by yourself. The framework will remember it next time.
 
