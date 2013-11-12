@@ -56,11 +56,11 @@ string dep_command(vector<string> &objects)
 	commd += "default: ";
 	for(vector<string>::iterator it=objects.begin(); it != objects.end(); ++it)
 	{
-		commd += "$(ROBJDIR)/";
+		commd += "$(OBJDIR)/";
 		commd += *it;
 		commd += ".o ";
 
-		commd += "$(DOBJDIR)/";
+		commd += "$(OBJDIR)/";
 		commd += *it;
 		commd += "d.o ";
 	} 
@@ -75,19 +75,19 @@ int obj_command_template(ofstream &file, string &object, map<string, string> &re
 {
 	if(remember.find(object) != remember.end())
 	{
-		file << "$(ROBJDIR)/" << object << ".o:" << remember[object] << endl;
+		file << "$(OBJDIR)/" << object << ".o:" << remember[object] << endl;
 		file << "\t" << "$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@" << endl << endl;
 
-		file << "$(DOBJDIR)/" << object << "d" << ".o:" << remember[object] << endl;
+		file << "$(OBJDIR)/" << object << "d" << ".o:" << remember[object] << endl;
 		file << "\t" << "$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@" << endl << endl;
 	}
 	else
 	{
-		file << "$(ROBJDIR)/" << object << ".o: $(SRCDIR)/" << object << 
+		file << "$(OBJDIR)/" << object << ".o: $(SRCDIR)/" << object << 
 		".cpp $(INCDIR)/" << object << ".h" << endl;
 		file << "\t" << "$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@" << endl << endl;
 
-		file << "$(DOBJDIR)/" << object << "d" << ".o: $(SRCDIR)/" << object << 
+		file << "$(OBJDIR)/" << object << "d" << ".o: $(SRCDIR)/" << object << 
 		".cpp $(INCDIR)/" << object << ".h" << endl;
 		file << "\t" << "$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@" << endl << endl;
 	}
@@ -176,8 +176,6 @@ int main(int argc, char *argv[])
 		string const incl_path = cur_dir + incl;
 		string const output_dir_path = cur_dir + output;
 		string const obj_dir_path = output_dir_path + "/" + obj;
-		string const release_obj_dir_path = obj_dir_path + "/" + "release";
-		string const debug_obj_dir_path = obj_dir_path + "/" + "debug";
 		string const lib_dir_path = output_dir_path + "/" + lib;
 		string const bin_dir_path = output_dir_path + "/"  + bin;
 		string const f_makefile_path = cur_dir + f_makefile;
@@ -189,8 +187,6 @@ int main(int argc, char *argv[])
 		mkdir(incl_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
 		mkdir(output_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
 		mkdir(obj_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
-		mkdir(release_obj_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
-		mkdir(debug_obj_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
 		mkdir(lib_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
 		mkdir(bin_dir_path.c_str(),S_IRWXU | S_IRWXG | S_IRWXO);
 
