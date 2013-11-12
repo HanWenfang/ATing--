@@ -3,12 +3,12 @@
 # You can modify it to suit your application.
 #
 
-default: $(ROBJDIR)/ating.o $(DOBJDIR)/atingd.o $(BINDIR)/$(target) $(BINDIR)/$(target)d
+default: $(OBJDIR)/ating.o $(OBJDIR)/atingd.o $(BINDIR)/$(target) $(BINDIR)/$(target)d
 
-$(ROBJDIR)/ating.o: $(SRCDIR)/ating.cpp $(INCDIR)/ating.h
+$(OBJDIR)/ating.o: $(SRCDIR)/ating.cpp $(INCDIR)/ating.h
 	$(CPP) $(INCLUDE) $(RELEASEOPT_CPP) -c $< -o $@
 
-$(DOBJDIR)/atingd.o: $(SRCDIR)/ating.cpp $(INCDIR)/ating.h
+$(OBJDIR)/atingd.o: $(SRCDIR)/ating.cpp $(INCDIR)/ating.h
 	$(CPP) $(INCLUDE) $(DEBUGOPT_CPP) -c $< -o $@
 
 

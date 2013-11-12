@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
 		string const incl_path = cur_dir + incl;
 		string const output_dir_path = cur_dir + output;
 		string const obj_dir_path = output_dir_path + "/" + obj;
-		string const release_obj_dir_path = obj + "/" + "release";
-		string const debug_obj_dir_path = obj + "/" + "debug";
+		string const release_obj_dir_path = obj_dir_path + "/" + "release";
+		string const debug_obj_dir_path = obj_dir_path + "/" + "debug";
 		string const lib_dir_path = output_dir_path + "/" + lib;
 		string const bin_dir_path = output_dir_path + "/"  + bin;
 		string const f_makefile_path = cur_dir + f_makefile;

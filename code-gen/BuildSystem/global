@@ -6,8 +6,7 @@
 SRCDIR   = $(cwd)/src
 INCDIR   = $(cwd)/include
 LIBDIR   = $(cwd)/output/lib
-ROBJDIR   = $(cwd)/output/obj/release
-DOBJDIR   = $(cwd)/output/obj/debug
+OBJDIR   = $(cwd)/output/obj
 BINDIR   = $(cwd)/output/bin
 
 ###objects is better
@@ -21,7 +20,7 @@ RANLIB  = ranlib
 SHLIB 	= 
 
 #bin
-DEBUGOPT_LINK   = 
+DEBUGOPT_LINK   = -g -D_DEBUG
 RELEASEOPT_LINK	=
 STATICOPT_LINK  = -static
 
