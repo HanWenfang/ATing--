@@ -65,7 +65,7 @@ string dep_command(vector<string> &objects)
 		commd += "d.o ";
 	} 
 	commd += "$(BINDIR)/$(target) ";
-	commd += "$(BINDIR)/$(target)d";
+	commd += "$(BINDIR)/d$(target)";
 
 	return commd;
 }

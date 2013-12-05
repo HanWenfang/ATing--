@@ -32,7 +32,7 @@ RELEASEOPT_CPP  = -DNDEBUG
 INCLUDE = -I$(cwd)/include $(foreach p,$(APP_ADD_INCLUDE),-I$(p))
 LIBRARY = $(foreach p,$(APP_ADD_LIBRARY),-L$(p))
 
-DEP_LIBS_DEBUG   = $(foreach l,$(dep_libs),-l$(l)d$(OSARCH_POSTFIX))
-DEP_LIBS_RELEASE = $(foreach l,$(dep_libs),-l$(l)$(OSARCH_POSTFIX))
+#DEP_LIBS_DEBUG   = $(foreach l,$(dep_libs),-l$(l)d$(OSARCH_POSTFIX))
+#DEP_LIBS_RELEASE = $(foreach l,$(dep_libs),-l$(l)$(OSARCH_POSTFIX))
 
 
